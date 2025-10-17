@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Elegant Animated Border</title>
+<style>
+  body {
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0b0b10;
+  }
+
+  .border-box {
+    position:relative;
+    width:380px;
+    height:220px;
+  }
+
+  .content {
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font:600 18px/1.2 "Open Sans", sans-serif;
+    color:#fff;
+    background:rgba(255,255,255,0.02);
+    border-radius:16px;
+    backdrop-filter: blur(6px);
+  }
+
+  svg {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+  }
+
+  .path {
+    stroke-width:1.4;
+    stroke-linecap:round;
+    stroke:url(#fadeGradient);
+    stroke-dasharray:140 760;
+    filter:url(#blurGlow);
+    animation: move 4s linear infinite;
+  }
+
+  @keyframes move {
+    to { stroke-dashoffset: -900; }
+  }
+</style>
+</head>
+<body>
+  <div class="border-box">
+    <div class="content">Elegant Border</div>
+
+    <svg viewBox="0 0 300 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Smooth multi-stop gradient -->
+        <linearGradient id="fadeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="transparent"/>
+          <stop offset="25%" stop-color="#DECBF2"/>
+          <stop offset="45%" stop-color="#D9C8F2"/>
+          <stop offset="65%" stop-color="#E0D3F4"/>
+          <stop offset="80%" stop-color="#EADDFB"/>
+          <stop offset="100%" stop-color="#F5EEFF"/>
+        </linearGradient>
+
+        <!-- Glow softness -->
+        <filter id="blurGlow">
+          <feGaussianBlur stdDeviation="2.2" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <rect class="path" x="6" y="6" width="288" height="168" rx="14" fill="none"/>
+    </svg>
+  </div>
+</body>
+</html>
+
+// Initialize Lucide icons
+lucide.createIcons();
+
+// Splash Screen Handler
+window.addEventListener('load', () => {
+  const splashScreen = document.getElementById('splashScreen');
+  const mainContent = document.getElementById('mainContent');
+  
+  // Hide splash screen after 3.5 seconds
+  setTimeout(() => {
+    splashScreen.style.display = 'none';
+    mainContent.style.display = 'block';
+    // Reinitialize Lucide icons for main content
+    lucide.createIcons();
+  }, 3500);
+});
+
+// Close promo banner
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('.close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.querySelector('.promo-banner').style.display = 'none';
+    });
+  }
+});
+
+// Tab switching functionality
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Search functionality
+const searchBtn = document.querySelector('.search-btn');
+if (searchBtn) {
+  searchBtn.addEventListener('click', function() {
+    const query = document.querySelector('.search-box').value;
+    if (query) {
+      alert('Searching for: ' + query);
+    }
+  });
+}
+
+// Add enter key support for search
+const searchBox = document.querySelector('.search-box');
+if (searchBox) {
+  searchBox.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      const query = this.value;
+      if (query) {
+        alert('Searching for: ' + query);
+      }
+    }
+  });
+}
+
+
+// Search functionality
+const searchBtn = document.querySelector('.search-btn');
+const searchBox = document.querySelector('.search-box');
+if (searchBtn && searchBox) {
+  searchBtn.addEventListener('click', () => {
+    const query = searchBox.value.trim();
+    if (query) console.log('Searching for:', query);
+  });
+  
+  // Enter key search
+  searchBox.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      const query = e.target.value.trim();
+      if (query) console.log('Searching for:', query);
+    }
+  });
+  
+          Explore exquisite pieces from master jewelers and artisans ready to bring your vision to life.
